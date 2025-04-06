@@ -1,5 +1,5 @@
 {
-  "name": "swagger-autogen",
+  "name": "swagger-autogen-hv",
   "version": "1.0.0",
   "description": "this package is used to automate swagger documentation and help frontend developers to vvisually test what they expect from specific endpoint",
   "main": "index.js",
