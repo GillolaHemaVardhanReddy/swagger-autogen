@@ -5,7 +5,7 @@ import traverse from '@babel/traverse';
 import { extractSwaggerSchema } from './extractSchemas.js';
 import { transformRoutePath } from './utils/transformPath.js';
 
-export function parseRoutes({ routesDir = path.resolve(process.cwd(), 'backend', 'routes'), schemas, responses = {} }) {
+export function parseRoutes({ routesDir = path.resolve(process.cwd(), 'routes'), schemas, responses = {} }) {
   /*
   1. ROUTES_DIR = /Users/hemavardhang/Desktop/anime/way2newsall-alpha_ads_panel-860c90c08eb6/backend/routes
   the ROUTES_DIR is the directory where all the route files are located and extracted using path.resolve
@@ -154,7 +154,7 @@ export function parseRoutes({ routesDir = path.resolve(process.cwd(), 'backend',
   }
 }
   */
-  const routeFiles = fs.readdirSync(routesDir).filter(file => file.endsWith('.route.js'));
+const routeFiles = fs.readdirSync(routesDir).filter(file => file.endsWith('.route.js'));
   const allRoutes = [];
   const commonRes = responses['200'] || {};
 
@@ -192,7 +192,6 @@ export function parseRoutes({ routesDir = path.resolve(process.cwd(), 'backend',
             const obj = schemaArg.arguments[0];
             schema = `${obj.object?.name}.${obj.property?.name}`;
           }
-
           const controllerArg = middlewares.find(arg =>
             arg.type === 'MemberExpression' &&
             arg.object?.name?.endsWith('Controller')
@@ -208,7 +207,7 @@ export function parseRoutes({ routesDir = path.resolve(process.cwd(), 'backend',
           let parameters = [];
 
           if (schema) {
-            const extracted = extractSwaggerSchema({ schemas, schemaString: schema, routePath: prefix });
+            const extracted = extractSwaggerSchema(schema, schemas, prefix );
             requestBodySchema = extracted.requestBodySchema || {};
             parameters = extracted.parameters || [];
           }

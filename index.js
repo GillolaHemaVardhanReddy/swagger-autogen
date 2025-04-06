@@ -12,3 +12,4 @@ import { generateDocumentation } from './core/generateDocumentation.js';
 export function getOpenApiPaths({ routesDir, schemas, responses }) {
   return generateDocumentation({ routesDir, schemas, responses });
 }
+export { setupSwagger } from './core/swagger.js';
