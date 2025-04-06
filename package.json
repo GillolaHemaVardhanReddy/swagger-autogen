@@ -1,0 +1,27 @@
+{
+  "name": "swagger-autogen",
+  "version": "1.0.0",
+  "description": "this package is used to automate swagger documentation and help frontend developers to vvisually test what they expect from specific endpoint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GillolaHemaVardhanReddy/swagger-autogen.git"
+  },
+  "keywords": [
+    "swagger",
+    "openapi",
+    "documentation",
+    "express",
+    "joi",
+    "automation"
+  ],
+  "author": "G. Hema Vardhan Reddy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GillolaHemaVardhanReddy/swagger-autogen/issues"
+  },
+  "homepage": "https://github.com/GillolaHemaVardhanReddy/swagger-autogen#readme"
+}
