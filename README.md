@@ -35,22 +35,44 @@ setupSwagger(app, {
 });
 
 📁 Recommended Project Structure
-<pre> /backend ├── routes/ ├── schemas/ ├── swaggerDocs/ ├── utils/ ├── config.js └── server.js </pre>
+<pre> 
+    /backend 
+        ├── routes/ 
+            ├── moduleName.route.js
+            ├── index.js
+        ├── schemas/ 
+            ├──moduleName.schema.js
+            ├──index.js
+        ├── server.js 
+</pre>
 
 📘 API Reference
 getOpenApiPaths({ schemas, responses })
-Param	Type	Required	Description
+
+Param	Type	Required	Description 
+
 schemas	Object	✅ Yes	Your route validation schemas
+
 responses	Object	❌ No	Custom Swagger response definitions
+
 setupSwagger(app, options)
+
 Option	Type	Required	Description
+
 app	Object	✅ Yes	Your Express application instance
+
 documentation	Object	✅ Yes	Output from getOpenApiPaths()
+
 title	String	✅ Yes	Title of the Swagger UI
+
 serverUrl	String	✅ Yes	Base URL of your API
+
 version	String	✅ Yes	API version number
+
 description	String	❌ No	Short description of the API
+
 enabled	Boolean	✅ Yes	Toggle Swagger UI (e.g., disable in prod)
+
 ✅ Example Output
 
 Swagger UI will be available at:
