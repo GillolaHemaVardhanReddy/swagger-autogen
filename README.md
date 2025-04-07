@@ -35,14 +35,7 @@ setupSwagger(app, {
 });
 
 📁 Recommended Project Structure
-
-/backend
-  ├── routes/
-  ├── schemas/
-  ├── swaggerDocs/
-  ├── utils/
-  ├── config.js
-  └── server.js
+<pre> /backend ├── routes/ ├── schemas/ ├── swaggerDocs/ ├── utils/ ├── config.js └── server.js </pre>
 
 📘 API Reference
 getOpenApiPaths({ schemas, responses })
