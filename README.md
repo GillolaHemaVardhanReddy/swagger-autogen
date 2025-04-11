@@ -19,7 +19,6 @@ npm install swagger-autogen-hv
 
 Integrate with your Express server in a few lines:
 <pre>
-```js
 const { setupSwagger, getOpenApiPaths } = require('swagger-autogen-hv');
 const config = require('./config');
 const schemas = require('./schemas'); // Your Joi or validation schema files
@@ -34,7 +33,6 @@ setupSwagger(app, {
   description: 'API Docs for Alpha Ads', 
   enabled: config.env !== 'production', // Enable only in dev or staging 
 });
-```
 </pre>
 
 📁 Recommended Project Structure
