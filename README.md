@@ -25,13 +25,13 @@ const schemas = require('./schemas'); // Your Joi or validation schema files
 
 const documentation = getOpenApiPaths({ schemas }); // 'responses' is optional
 
-setupSwagger(app, {
-  documentation,
-  title: 'Alpha Ads API',
-  serverUrl: `http://localhost:${config.port}`,
-  version: '1.0.0',
-  description: 'API Docs for Alpha Ads',
-  enabled: config.env !== 'production', // Enable only in dev or staging
+setupSwagger(app, { \n
+  documentation, \n
+  title: 'Alpha Ads API', \n
+  serverUrl: `http://localhost:${config.port}`, \n
+  version: '1.0.0', \n
+  description: 'API Docs for Alpha Ads', \n
+  enabled: config.env !== 'production', // Enable only in dev or staging \n
 });
 </pre>
 📁 Recommended Project Structure
