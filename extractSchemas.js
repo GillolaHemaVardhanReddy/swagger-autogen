@@ -22,6 +22,23 @@ function generateDescriptionFromKey(key, routeTag) {
   return `${formattedKey} related to ${routeTag}.`;
 }
 
+function joiToSwaggerParam(joiSchema, key = '', routeTag = '', location = 'query') {
+  const baseSchema = joiToSwagger(joiSchema, key, routeTag);
+  
+  return {
+    name: key,
+    in: location,
+    required: !!joiSchema._flags.presence && joiSchema._flags.presence === 'required',
+    schema: {
+      type: baseSchema.type,
+      example: baseSchema.example,
+      ...(baseSchema.enum && { enum: baseSchema.enum })
+    },
+    description: baseSchema.description || generateDescriptionFromKey(key, routeTag)
+  };
+}
+
+
 function joiToSwagger(joiSchema, key = '', routeTag = '') {
   if (!joiSchema || typeof joiSchema !== 'object') {
     return { type: 'string', example: 'string', description: 'Generic string field' };
@@ -98,21 +115,14 @@ export function extractSwaggerSchema(schemaString, schemas, routePath = '') {
 
     const joiKeys = joiSection._ids._byKey;
     for (const [key, meta] of joiKeys) {
-      const fieldSchema = joiToSwagger(meta.schema, key, routeTag);
-      const isRequired = meta.schema._flags?.presence === 'required';
+      const fieldSchema = meta.schema;
+      const isRequired = fieldSchema._flags?.presence === 'required';
 
       if (section === 'body') {
-        requestBodySchema[key] = fieldSchema;
+        requestBodySchema[key] = joiToSwagger(fieldSchema, key, routeTag);
       } else {
-        parameters.push({
-          name: key,
-          in: section === 'params' ? 'path' : 'query',
-          required: isRequired,
-          description: fieldSchema.description || '',
-          type: fieldSchema,
-          example: fieldSchema.example,
-          default: fieldSchema.default,
-        });
+        const location = section === 'params' ? 'path' : 'query';
+        parameters.push(joiToSwaggerParam(fieldSchema, key, routeTag, location));
       }
     }
   }
